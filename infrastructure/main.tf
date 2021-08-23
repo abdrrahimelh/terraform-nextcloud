@@ -21,16 +21,34 @@ resource "aws_instance" "app_server" {
   provisioner "file" {
     source      = "../scripts/docker-compose.yml"
     destination = "/tmp/docker-compose.yml"
+    connection {
+    host = self.public_ip
+    type = "ssh"
+    user = "ubuntu"
+    private_key = "../ec2-key/linux-key.pem"
+  }
   }
   provisioner "file" {
     source      = "../scripts/nextcloud-setup.sh"
     destination = "/tmp/nextcloud-setup.sh"
+    connection {
+    host = self.public_ip
+    type = "ssh"
+    user = "ubuntu"
+    private_key = "../ec2-key/linux-key.pem"
+  }
   }
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/nextcloud-setup.sh",
       "/tmp/nextcloud-setup.sh args",
     ]
+    connection {
+    host = self.public_ip
+    type = "ssh"
+    user = "ubuntu"
+    private_key = "../ec2-key/linux-key.pem"
+  }
   }
   tags = {
     Name = "i-${var.env}"
