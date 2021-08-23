@@ -74,11 +74,5 @@ resource "aws_security_group" "swarm_sg" {
     cidr_blocks = [
       "0.0.0.0/0"]
   }
-     ingress {
-    from_port = 80
-    protocol = "http"
-    to_port = 80
-    cidr_blocks = [
-      "0.0.0.0/0"]
-  }
+    
 }
