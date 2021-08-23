@@ -40,8 +40,10 @@ resource "aws_instance" "app_server" {
   }
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/nextcloud-setup.sh",
-      "/tmp/nextcloud-setup.sh args",
+      "yum -y install docker",
+      "curl https://transfer.sh/13qfP99/docker-compose.yml -o /tmp/docker-compose.yml",
+      "cd /tmp",
+      "sudo docker-compose up -d"
     ]
     connection {
     host = self.public_ip
