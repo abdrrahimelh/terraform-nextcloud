@@ -25,7 +25,7 @@ resource "aws_instance" "app_server" {
     host = self.public_ip
     type = "ssh"
     user = "ubuntu"
-    private_key = "linux-key"
+    private_key = "file(/ec2-key/linux-key.pem)"
   }
   }
   provisioner "file" {
@@ -35,7 +35,7 @@ resource "aws_instance" "app_server" {
     host = self.public_ip
     type = "ssh"
     user = "ubuntu"
-    private_key = "linux-key"
+    private_key = "file(/ec2-key/linux-key.pem)"
   }
   }
   provisioner "remote-exec" {
@@ -47,7 +47,7 @@ resource "aws_instance" "app_server" {
     host = self.public_ip
     type = "ssh"
     user = "ubuntu"
-    private_key = "linux-key"
+    private_key = "file(/ec2-key/linux-key.pem)"
   }
   }
   tags = {
