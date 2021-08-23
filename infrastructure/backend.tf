@@ -3,7 +3,7 @@ terraform {
     organization = "abdrrahimelh"
 
     workspaces {
-      name = "nextcloud"
+      name = "abdrrahimelh"
     }
   }
 }
