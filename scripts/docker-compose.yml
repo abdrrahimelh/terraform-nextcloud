@@ -22,7 +22,6 @@ services:
     restart: always
     ports:
       - 8080:80
-    network_mode: host
     links:
       - db
     volumes:
