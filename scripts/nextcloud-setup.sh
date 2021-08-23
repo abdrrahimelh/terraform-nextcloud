@@ -1,4 +1,4 @@
 #!/bin/bash
-yum -y install docker
+sudo snap install docker
 cd /tmp
 sudo docker-compose up -d

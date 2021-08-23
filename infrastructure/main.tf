@@ -28,22 +28,11 @@ resource "aws_instance" "app_server" {
     private_key = file("linux-key.pem")
   }
   }
-  provisioner "file" {
-    source      = "../scripts/nextcloud-setup.sh"
-    destination = "/tmp/nextcloud-setup.sh"
-    connection {
-    host = self.public_ip
-    type = "ssh"
-    user = "ubuntu"
-    private_key = file("linux-key.pem")
-  }
-  }
+ 
   provisioner "remote-exec" {
     inline = [
       "sudo snap install docker",
-      "curl https://transfer.sh/13qfP99/docker-compose.yml -o /tmp/docker-compose.yml",
-      "cd /tmp",
-      "sudo docker-compose up -d"
+      "sudo /tmp/docker-compose up -f /tmp/docker-compose.yml"
     ]
     connection {
     host = self.public_ip
