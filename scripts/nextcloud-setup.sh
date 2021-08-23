@@ -1,4 +1,4 @@
 #!/bin/bash
 sudo snap install docker
-cd /tmp
+cd /home/ubuntu
 sudo docker-compose up -d
