@@ -7,6 +7,9 @@ variable "region" {
   default="eu-west-3"
   
 }
+provider "aws" {
+  region  = var.region
+}
 
 
 resource "aws_instance" "app_server" {
