@@ -31,23 +31,27 @@ jobs:
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
+        working-directory : ./infrastructure
         continue-on-error: true
 
       - name: Terraform Init
         id: init
-     
+        working-directory : ./infrastructure
         run: terraform init -backend-config="token=${{ secrets.TERRAFORM_PROVIDER_TOKEN }}" 
 
       - name: Terraform Validate
         id: validate
         run: terraform validate
+        working-directory : ./infrastructure
 
       - name: Terraform Plan
         id: plan
         run: terraform plan 
+        working-directory : ./infrastructure
         continue-on-error: false
 
       - name: Terraform apply
         id: apply
+        working-directory : ./infrastructure
         run: terraform apply -var "env=dev" -auto-approve 
 
