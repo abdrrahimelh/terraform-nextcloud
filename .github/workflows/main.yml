@@ -47,7 +47,7 @@ jobs:
         working-directory : ./infrastructure
         id: plan
         run: terraform plan 
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Terraform apply
         id: apply
