@@ -20,7 +20,7 @@ resource "aws_instance" "app_server" {
   security_groups = ["swarm_sg"]
   provisioner "file" {
     source      = "../scripts/docker-compose.yml"
-    destination = "/tmp/docker-compose.yml"
+    destination = "/home/ubuntu/docker-compose.yml"
     connection {
     host = self.public_ip
     type = "ssh"
@@ -32,7 +32,7 @@ resource "aws_instance" "app_server" {
   provisioner "remote-exec" {
     inline = [
       "sudo snap install docker",
-      "cd /tmp",
+      "cd /home/ubuntu",
       "sudo docker-compose up -d"
     ]
     connection {
