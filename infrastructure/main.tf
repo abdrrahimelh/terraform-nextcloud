@@ -32,7 +32,8 @@ resource "aws_instance" "app_server" {
   provisioner "remote-exec" {
     inline = [
       "sudo snap install docker",
-      "sudo docker-compose up --file /tmp/docker-compose.yml"
+      "cd /tmp",
+      "sudo docker-compose up -d"
     ]
     connection {
     host = self.public_ip
