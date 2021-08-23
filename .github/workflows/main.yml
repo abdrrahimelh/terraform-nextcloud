@@ -36,27 +36,22 @@ jobs:
 
       - name: Terraform Init
         working-directory : ./infrastructure
-
         id: init
         run: terraform init -backend-config="token=${{ secrets.TERRAFORM_PROVIDER_TOKEN }}" 
 
       - name: Terraform Validate
         working-directory : ./infrastructure
-
         id: validate
         run: terraform validate
 
       - name: Terraform Plan
         working-directory : ./infrastructure
-
         id: plan
         run: terraform plan 
-        continue-on-error: false
+        continue-on-error: true
 
       - name: Terraform apply
         id: apply
-
         working-directory : ./infrastructure
-
         run: terraform apply -var "env=dev" -auto-approve 
 
