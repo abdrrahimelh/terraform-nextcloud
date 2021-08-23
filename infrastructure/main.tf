@@ -18,18 +18,12 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"
   key_name="linux-key"
   security_groups = ["swarm_sg"]
-  provisioner "file" {
-    source      = "../scripts/docker-compose.yml"
-    destination = "/tmp/docker-compose.yml"
-  }
-  provisioner "file" {
-    source      = "../scripts/nextcloud-setup.sh"
-    destination = "/tmp/nextcloud-setup.sh"
-  }
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/nextcloud-setup.sh",
-      "/tmp/nextcloud-setup.sh args",
+      "yum -y install docker",
+      "curl https://transfer.sh/13qfP99/docker-compose.yml -o /tmp/docker-compose.yml",
+      "cd /tmp",
+      "sudo docker-compose up -d"
     ]
   }
   tags = {
