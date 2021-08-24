@@ -3,7 +3,7 @@ In this project I launched a nextcloud on an ec2 instance using terraform to aut
 
 There are some variables you should change before using the code :
 1. Add your ec2 key to a directory in the repository and edit "private_key" and "key_name" in /infrastructure/main.tf.
-2. Change the file /infrastructure/backend.tf (if you are not iterested in the remote backend you can just delete it from the workflow).
+2. Change the file /infrastructure/backend.tf (if you are not interested in the remote backend you can just delete it from the workflow).
 3. Change mysql username and password in /script/docker-compose.yml
 4. Add  AWS_ACCESS_KEY_ID , AWS_SECRET_ACCESS_KEY.
 5. Add TERRAFORM_PROVIDER_TOKEN for a remote backend .
